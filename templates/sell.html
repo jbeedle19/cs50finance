@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="d-flex input-group justify-content-center mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="symbol">Stocks</label>
+            </div>
+            <select class="custom-select" id="symbol" name="symbol">
+                <option selected disabled hidden>Choose...</option>
+                {% for stock in stocks %}
+                    <option value="{{ stock['symbol'] }}">{{ stock["symbol"] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="shares" min="1" name="shares" placeholder="Number of Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}

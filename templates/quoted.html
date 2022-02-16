@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    {% if quote %}
+        <div>
+            <h2>Quote Information:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Symbol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ quote["name"] }}</td>
+                        <td>{{ quote["price"] | usd }}</td>
+                        <td>{{ quote["symbol"] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div>
+            <h2>Hmm, no quote found 🤔</h2>
+        </div>
+    {% endif %}
+{% endblock %}

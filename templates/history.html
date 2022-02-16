@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    {% if history %}
+        <div>
+            <h2>{{ user["username"] }}'s History:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Symbol</th>
+                        <th>Transaction Type</th>
+                        <th>Shares</th>
+                        <th>Price</th>
+                        <th>Transaction Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stock in history %}
+                        <tr>
+                            <td>{{ stock["name"] }}</td>
+                            <td>{{ stock["symbol"] }}</td>
+                            <td>{{ stock["type"] }}</td>
+                            <td>{{ stock["shares"] }}</td>
+                            <td>{{ stock["price"] | usd }}</td>
+                            <td>{{ stock["time"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div>
+            <h2>Hmm, no history found 🤔</h2>
+        </div>
+    {% endif %}
+{% endblock %}

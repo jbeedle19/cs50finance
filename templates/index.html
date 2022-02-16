@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    {% if userStocks %}
+        <div>
+            <h2>{{ user["username"]}}'s Stocks:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Symbol</th>
+                        <th>Shares</th>
+                        <th>Price</th>
+                        <th>Total Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stock in userStocks %}
+                        <tr>
+                            <td>{{ stock["name"] }}</td>
+                            <td>{{ stock["symbol"] }}</td>
+                            <td>{{ stock["shares"] }}</td>
+                            <td>{{ stock["price"] | usd }}</td>
+                            <td>{{ stock["total value"] | usd }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <h4>Cash Balance: {{ user["cash"] | usd }}</h4>
+            <br>
+            <h4>Grand Total: {{ grandTotal | usd }}</h4>
+        </div>
+    {% else %}
+        <div>
+            <h2>Welcome {{ user["username"]}}!</h2>
+            <br>
+            <h3>Hmm, no stocks found 🤔</h3>
+        </div>
+    {% endif %}
+{% endblock %}
